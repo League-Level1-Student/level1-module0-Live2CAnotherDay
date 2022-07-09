@@ -1,4 +1,4 @@
-package _01_methods._4_magic_worms.MagicWorms;
+package _01_methods._4_magic_worms;
 
 import processing.core.PApplet;
 
@@ -30,22 +30,45 @@ import processing.core.PApplet;
  *    "red value", and i as the "green value" for some extra color coolness.
  */
 public class MagicWorms extends PApplet {
-    static final int WIDTH = 600;
-    static final int HEIGHT = 400;
+    static final int WIDTH = 1919;
+    static final int HEIGHT = 1035;
+    int x = (int)random(0, WIDTH + 1);
+    int y = (int)random(0, HEIGHT + 1);
+    int w = 50;
+    int h = 50;
 
     @Override
     public void settings() {
-        size(WIDTH, HEIGHT);
+    	size(WIDTH, HEIGHT);
+    	
     }
 
     @Override
     public void setup() {
-
+    	background(0, 0, 0);
     }
 
     @Override
     public void draw() {
-
+    	makeMagical();
+    	for(int i = 0; i <= 4; i++ ) {
+    		if (i % 2 == 1) {
+    			fill(100, 0, 100);
+    			ellipse(x, y, w + 5, h + 5);
+    			x = (int)random(0, WIDTH + 1);
+    			y = (int)random(0, HEIGHT + 1);
+    		}else if (i % 3 == 1){
+    			fill(100, 255, 0);
+    			ellipse(x, y, w - 45, h  - 45);
+    			x = (int)random(0, WIDTH + 1);
+    			y = (int)random(0, HEIGHT + 1);
+    		}else{
+    			fill(0, 100, 100);
+    			ellipse(x, y, w + 35, h + 35);
+    			x = (int)random(0, WIDTH + 1);
+    			y = (int)random(0, HEIGHT + 1);
+    		}
+    	}
     }
 
     static public void main(String[] args) {
