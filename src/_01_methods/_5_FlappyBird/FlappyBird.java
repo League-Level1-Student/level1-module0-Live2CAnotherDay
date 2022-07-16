@@ -14,11 +14,17 @@ public class FlappyBird extends PApplet {
     int birdYVelocity = 0;
 	int gravity = 1;
 	int pipeX = 500;
-	int topPipeY = (int)random(0, );
+	int topPipeY = (int)random(-125, 1);
+	int pipeHeight = 400;
+	int pipeSpace = topPipeY + pipeHeight + 100;
+	int x = WIDTH / 4;
+	
+	
 
     @Override
     public void settings() {
         size(WIDTH, HEIGHT);
+        
     }
 
     @Override
@@ -28,8 +34,8 @@ public class FlappyBird extends PApplet {
     	bird.resize(50, 50);
     	bottomPipe = loadImage("bottomPipe.png");
     	topPipe = loadImage("topPipe.png");
-    	
-    }
+    	}
+    
 
     @Override
     public void draw() {
@@ -37,14 +43,15 @@ public class FlappyBird extends PApplet {
     	background(background);
     	fill(255, 255, 0);
     	stroke(255, 255, 255);
-    	int x = WIDTH / 4;
     	
+    	image(topPipe, pipeX, topPipeY, 50, pipeHeight);
+    	image(bottomPipe, pipeX , pipeSpace, 50, pipeHeight);
+    	pipeX -= 5;
     	
-    	image(bottomPipe, pipeX , pipeY);
-    	pipeX -= 1;
-    	image(topPipe, pipeX, pipeY);
     	if (pipeX < -50) {
     		pipeX = 500;
+    		topPipeY = (int)random(-125, 1);
+    		pipeSpace = topPipeY + pipeHeight + 100;
     	}
     	
     	
@@ -58,8 +65,19 @@ public class FlappyBird extends PApplet {
     	birdYVelocity = birdYVelocity + gravity;
 		y = y + birdYVelocity;
 		image(bird, x, y );	
-
+		
+		
+	}
+    
+    boolean intersectsPipes() { 
+        if (y < topPipeY && x > pipeX && x < (pipeX + 50)){
+           return true; 
+        }else if (y > pipeSpace && x > pipeX && x < (pipeX + 50)) {
+           return true; 
+        }else { return false; }
     }
+        
+    
 
     static public void main(String[] args) {
         PApplet.main(FlappyBird.class.getName());
