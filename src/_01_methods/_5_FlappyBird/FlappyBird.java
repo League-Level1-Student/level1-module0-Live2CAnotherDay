@@ -1,5 +1,7 @@
 package _01_methods._5_FlappyBird;
 
+import javax.swing.JOptionPane;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -12,13 +14,13 @@ public class FlappyBird extends PApplet {
     PImage topPipe;
     int y = HEIGHT / 2;
     int birdYVelocity = 0;
-	int gravity = 1;
+	int gravity = 0;
 	int pipeX = 500;
 	int topPipeY = (int)random(-125, 1);
 	int pipeHeight = 400;
 	int pipeSpace = topPipeY + pipeHeight + 100;
 	int x = WIDTH / 4;
-	
+	int point = 0;
 	
 
     @Override
@@ -50,22 +52,32 @@ public class FlappyBird extends PApplet {
     	
     	if (pipeX < -50) {
     		pipeX = 500;
-    		topPipeY = (int)random(-125, 1);
+    		topPipeY = (int)random(-150, 1);
     		pipeSpace = topPipeY + pipeHeight + 100;
     	}
     	
     	
     	
+    	
     	if (mousePressed) {
     		birdYVelocity = -10;
-    		
-    		
-    		 
+    		gravity = 1;
     	}
     	birdYVelocity = birdYVelocity + gravity;
 		y = y + birdYVelocity;
 		image(bird, x, y );	
+		if (pipeX < x) {
+			point += 1;
+		}
 		
+		if (intersectsPipes() == true) {
+			pipeX =  510;
+			JOptionPane.showMessageDialog(null, "You Banged Too Hard On A Pipe! Your Score is: " +  point);
+			System.exit(0);
+		}
+		if (y == 0) {
+    		JOptionPane.showMessageDialog(null, "You Slammed Too Hard On the Ground! Your Score is: " + point);
+    	}
 		
 	}
     
