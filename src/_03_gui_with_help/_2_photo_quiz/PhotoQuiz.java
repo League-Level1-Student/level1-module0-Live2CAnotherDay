@@ -26,19 +26,19 @@ public class PhotoQuiz {
 		// 1. find an image on the internet, and put its URL in a String
 		// variable (from your browser, right click on the image, and select
 		// “Copy Image Address” )
-		String alastor = "https://hero.fandom.com/wiki/Alastor_%28Hazbin_Hotel%29";
+		String potato = "https://api.time.com/wp-content/uploads/2014/11/potato.jpg";
 		// 2. create a variable of type "Component" that will hold your image
-		Component image = createImage(alastor);
+		Component image = createImage(potato);
 		// 3. use the "createImage()" method below to initialize your Component
 		
 		// 4. add the image to the quiz window
-
+		quizWindow.add(image);
 		// 5. call the pack() method on the quiz window
 		quizWindow.pack();
 		// 6. ask a question that relates to the image
 		String answer = JOptionPane.showInputDialog("Guess who this character is!");
 		// 7. print "CORRECT" if the user gave the right answer
-		if (answer  == "Alastor" || answer == "alastor" ) {
+		if (answer.equalsIgnoreCase ( "Potato" )) {
 			JOptionPane.showMessageDialog(null, "Correct!");
 		}else {
 			JOptionPane.showMessageDialog(null, "Incorrect!");
