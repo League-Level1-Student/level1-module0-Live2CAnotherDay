@@ -1,0 +1,13 @@
+   public class FortuneCookie {
+        public void showButton() {
+        	frame.setVisible(true);
+            System.out.println("Button clicked");
+       }
+    }
+    
+    
+   public class FortuneCookieRunner {
+        public static void main(String[] args) {
+            new FortuneCookie().showButton();
+      }
+   }
