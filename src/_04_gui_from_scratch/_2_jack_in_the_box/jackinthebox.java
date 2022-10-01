@@ -16,8 +16,10 @@ import javax.swing.JPanel;
 public class jackinthebox implements ActionListener{
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
+	JButton button = new JButton ("Surprise!");
+	int i = 0;
 	public void showButton(){
-		JButton button = new JButton ("Surprise!");
+		
 		button.addActionListener(this);
 		frame.add(panel);
 		
@@ -74,9 +76,9 @@ public class jackinthebox implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
-		 
+		
 		if (button == buttonPressed) {
-			int i = 0;
+			
 			if (i == 5) {
 				showPicture("jackInTheBox.png");
 				playSound("homer-woohoo.wav");
